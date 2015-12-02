@@ -1,0 +1,11 @@
+{
+  "name": "crwaler",
+  "version": "0.0.1",
+  "description": "",
+  "author": "monkindey",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^0.19.0"
+  },
+  "devDependencies": {}
+}
