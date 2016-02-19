@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello comet</title>
+	<style>
+		.btns {
+			width: 300px;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="btns">
+		<button id="open">开启</button>
+		<button id="close">关闭</button>
+		<ul id="msg-list"></ul>
+	</div>
+
+</body>
+<script>
+	var closeBtn = document.getElementById('close');
+	var openBtn = document.getElementById('open');
+	var es = null;
+
+	openBtn.onclick = function() {
+		es = new EventSource('/msg')
+		es.onmessage = function(e) {
+			var msgList = document.getElementById('msg-list');
+			var msg = document.createElement('li');
+			msg.innerHTML = 'message: ' + e.data;
+			msgList.appendChild(msg);
+		};
+	};
+
+	closeBtn.onclick = function() {
+		es.close();
+	};
+</script>
+</html>
