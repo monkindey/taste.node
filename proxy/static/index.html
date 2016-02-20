@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello Nodejs Proxy</title>
+</head>
+<body>
+	<h3>获取豆瓣用户信息</h3>
+	<p>默认是获取我的豆瓣消息，<em>monkindey</em></p>
+	<button id="send">获取</button>
+</body>
+<script>
+	function get(config) {
+		var url = config.url || '';
+		var cb = config.callback;
+		var xhr = new XMLHttpRequest();
+		xhr.open('get', url, true);
+		xhr.send(null);
+
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState == 4) {
+				if(xhr.status >= 200 && xhr.status < 300 || xhr.status == 304 ) {
+					cb && cb(JSON.parse(xhr.responseText))
+				}else {
+					cb && cb(xhr.responseText)
+					alert('false');
+				}
+			}
+		}
+	}
+
+	document.getElementById('send').onclick = function() {
+		get({
+			url: '/douban',
+			callback: function(data) {
+				console.dir(data);
+				alert('获取成功，可以查看console');
+			}
+		})
+	}
+</script>
+</html>
