@@ -4,9 +4,9 @@
 ### 原理
 1. 建立连接
 浏览器主动发出请求，生成`EventSource`实例化对象
-```javascript
-es = new EventSource('/msg')
-```
+  ```javascript
+  es = new EventSource('/msg')
+  ```
 EventSource(url) 里面的url应该是跟后端约定好的接口，
 详情可以看`index.js`
 
